@@ -50,7 +50,7 @@ const bookSchema = new Schema<IBook, BookModelType, BookMethods>(
 );
 // Document<unknown, {}, IBook, {}> & IBook & {_id: Types.ObjectId;} & { __v: number;}
 bookSchema.statics.deductCopies = async function (book: Document<unknown, {}, IBook, {}> & IBook, quantity: number): Promise<void> {
-    if (quantity - book.copies < 0) {
+    if (book.copies - quantity < 0) {
         throw new AppError(BAD_REQUEST, "Not enough copies available");
     }
     book.copies -= quantity;
