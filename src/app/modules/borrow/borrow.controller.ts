@@ -51,7 +51,6 @@ export const getBorrowedBooksSummery = catchAsyncError(async (req: Request, res:
             }
         }
     ])
-    console.log(summery)
     return res.status(CREATED).json({
         message: "Borrowed books summary retrieved successfully",
         success: true,

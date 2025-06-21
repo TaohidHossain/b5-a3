@@ -6,7 +6,6 @@ import { MongooseError } from "mongoose";
 
 
 function handelAppError(res: Response ,err: AppError) {
-    console.log("captuered app error", err);
     return res.status(err.statusCode).json({
         message: err.message,
         success: false,
