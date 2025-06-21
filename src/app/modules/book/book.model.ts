@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import { Document, model, Schema, Types } from "mongoose";
 import { BookMethods, BookModelType, IBook } from "./book.interface";
 import AppError from "../../utils/AppError";
 import { BAD_REQUEST } from "../../constants/httpStatusCodes";
@@ -48,6 +48,15 @@ const bookSchema = new Schema<IBook, BookModelType, BookMethods>(
         timestamps: true,
     }
 );
+// Document<unknown, {}, IBook, {}> & IBook & {_id: Types.ObjectId;} & { __v: number;}
+bookSchema.statics.deductCopies = async function (book: Document<unknown, {}, IBook, {}> & IBook, quantity: number): Promise<void> {
+    if (quantity - book.copies < 0) {
+        throw new AppError(BAD_REQUEST, "Not enough copies available");
+    }
+    book.copies -= quantity;
+    book.available = book.copies != 0;
+    await book.save();
+};
 
 bookSchema.methods.isAvailable = function (): boolean {
     return this.available;

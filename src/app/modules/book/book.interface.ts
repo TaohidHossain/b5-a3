@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Document, Model } from "mongoose";
 
 export interface IBook {
     title: string,
@@ -11,7 +11,7 @@ export interface IBook {
 }
 
 export interface BookModelType extends Model<IBook> {
-
+    deductCopies(book: Document<unknown, {}, IBook, {}> & IBook, quantity: number): Promise<void>;
 }
 
 export interface BookMethods {

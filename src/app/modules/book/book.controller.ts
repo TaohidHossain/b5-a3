@@ -12,7 +12,6 @@ export const createBook = catchAsyncError(async (req: Request, res: Response, ne
     const newBook = await Book.create(parsedBody);
     appAssert(newBook, BAD_REQUEST, "Book creation failed");
 
-
     return res.status(CREATED).json({
         message: "Book created successfully",
         success: true,
