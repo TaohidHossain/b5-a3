@@ -24,3 +24,37 @@ export const createBorrow = catchAsyncError(async (req: Request, res: Response, 
         data: newBorrow
     })
 })
+
+export const getBorrowedBooksSummery = catchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    const summery = await Borrow.aggregate([
+        {
+            $group: {
+            _id: '$book',
+            totalQuantity: { $sum: '$quantity' }
+        }
+        },{
+            $lookup: {
+            from: 'books',
+            localField: '_id',
+            foreignField: '_id',
+            as: 'book'
+        }
+        },{ $unwind: '$book' },
+        {
+            $project: {
+                book: {
+                    title: '$book.title',
+                    isbn: '$book.isbn',
+                },
+                totalQuantity: 1,
+                _id: 0
+            }
+        }
+    ])
+    console.log(summery)
+    return res.status(CREATED).json({
+        message: "Borrowed books summary retrieved successfully",
+        success: true,
+        data: summery
+    })
+})
