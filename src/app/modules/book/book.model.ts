@@ -68,7 +68,7 @@ bookSchema.pre("save", function (next) {
 });
 
 
-bookSchema.post("findOneAndDelete", function (doc, next) {
+bookSchema.post("findOneAndDelete", function (doc) {
     // delete related data or perform cleanup if necessary
 });
 

@@ -18,6 +18,14 @@ export const createBookSchema =
     }, {
         message: "Contradictory data: if copies is 0, available must be false",
         path: ["copies", "available"],
+    }).refine(data => {
+    if(data.copies != 0 && !data.available) {
+        return false; 
+    }
+    return true;
+    }, {
+        message: "Contradictory data: if copies is not 0, available must be true",
+        path: ["copies", "available"],
     });
 
 export const updateBookSchema =
