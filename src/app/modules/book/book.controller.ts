@@ -28,9 +28,9 @@ export const getAllBooks = catchAsyncError(async (req: Request, res: Response, n
       page = 1,
       limit = 10,
     } = req.query;
-    const filterQuery: Record<string, any> = {};
+    const filterQuery: Record<string, string> = {};
     if (filter) {
-        filterQuery.genre = filter;
+        filterQuery.genre = filter as string;
     }
 
     const sortDirection = sort === 'asc' ? 1 : -1;
