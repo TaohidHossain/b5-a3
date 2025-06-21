@@ -1,8 +1,8 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
-import errorHandler from './middlewares/errorHandler';
-import appAssert from './utils/appAssert';
-import { INTERNAL_SERVER_ERROR } from './constants/httpStatusCodes';
+import errorHandler from './app/middlewares/errorHandler';
+import appAssert from './app/utils/appAssert';
+import { INTERNAL_SERVER_ERROR } from './app/constants/httpStatusCodes';
 
 const app: Express = express();
 
