@@ -28,7 +28,7 @@ A RESTful API for managing a library's books and borrow records, built with **Ex
 - Node.js (v16+ recommended)
 - MongoDB instance (local or cloud)
 
-### Installation
+### :bangbang: Installation
 
 1. **Clone the repository**
     ```
@@ -52,7 +52,7 @@ A RESTful API for managing a library's books and borrow records, built with **Ex
     ```
     The server will run on http://localhost:4000 by default.
 
-## API Endpoints
+## ✨ API Endpoints
 
 ### :ballot_box_with_check: Books
 
@@ -66,7 +66,7 @@ A RESTful API for managing a library's books and borrow records, built with **Ex
 
 - `POST /api/borrow` — Borrow a book
 - `GET /api/borrow` — Get borrowed books
-## Sample request and response of the API endpoints
+## ‼️ Sample request and response of the API endpoints
 :ballot_box_with_check:`POST /api/books`
 ### Request
 ```
